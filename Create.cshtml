@@ -1,0 +1,52 @@
+@model Order
+
+<h2>Create Order</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>Order Number</label>
+        <input asp-for="OrderNumber" />
+        <span asp-validation-for="OrderNumber"></span>
+    </div>
+
+    <div>
+        <label>Customer Name</label>
+        <input asp-for="CustomerName" />
+        <span asp-validation-for="CustomerName"></span>
+    </div>
+
+    <div>
+        <label>Customer Email</label>
+        <input asp-for="CustomerEmail" />
+        <span asp-validation-for="CustomerEmail"></span>
+    </div>
+
+    <div>
+        <label>Product</label>
+        <select asp-for="ProductId" asp-items="ViewBag.Products"></select>
+        <span asp-validation-for="ProductId"></span>
+    </div>
+
+    <div>
+        <label>Quantity</label>
+        <input asp-for="Quantity" type="number" />
+        <span asp-validation-for="Quantity"></span>
+    </div>
+
+    <div>
+        <label>Order Date</label>
+        <input asp-for="OrderDate" type="date" />
+        <span asp-validation-for="OrderDate"></span>
+    </div>
+
+    <div>
+        <label>Delivery Date</label>
+        <input asp-for="DeliveryDate" type="date" />
+        <span asp-validation-for="DeliveryDate"></span>
+    </div>
+
+    <button type="submit">Create</button>
+    <a asp-action="Index">Back</a>
+
+</form>

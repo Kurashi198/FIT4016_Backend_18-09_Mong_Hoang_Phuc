@@ -1,0 +1,41 @@
+@model IEnumerable<Order>
+
+<h2>Orders</h2>
+
+<form method="get">
+    <input type="text" name="search" value="@ViewBag.Search" placeholder="Search by Order Number or Customer Name" />
+    <button type="submit">Search</button>
+</form>
+
+<p>Showing @Model.Count() of @ViewBag.TotalRecords orders</p>
+
+<table border="1">
+    <tr>
+        <th>Order Number</th>
+        <th>Customer</th>
+        <th>Email</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Order Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+@foreach (var o in Model)
+{
+    <tr>
+        <td>@o.OrderNumber</td>
+        <td>@o.CustomerName</td>
+        <td>@o.CustomerEmail</td>
+        <td>@o.Product.Name</td>
+        <td>@o.Quantity</td>
+        <td>@o.OrderDate.ToShortDateString()</td>
+        <td>@(o.DeliveryDate == null ? "Pending" : "Delivered")</td>
+        <td>
+            <a href="/Orders/Edit/@o.Id">Edit</a> |
+            <a href="/Orders/Delete/@o.Id">Delete</a>
+        </td>
+    </tr>
+}
+</table>
+
+<a href="/Orders/Create">Create New Order</a>
